@@ -3,5 +3,5 @@
   "forumChannelIds": ["CHANNEL_ID_1"],
   "votingDurationMs": 86400000,
   "proposalEmoji": "➕",
-  "pugBotId": "PUG_BOT_USER_ID"
+  "storyPugId": "STORY_PUG_USER_ID"
 }

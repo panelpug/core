@@ -47,7 +47,7 @@ export async function closeVotingSession(threadId: string): Promise<void> {
       `The winning plan with **${winner.count}** vote(s):\n` +
       `> ${winner.proposal.description}\n\n` +
       `Proposed by ${authorTag}.\n\n` +
-      `<@${config.pugBotId}> please create the next chapter in a new thread based on the winning plan above.`,
+      `<@${config.storyPugId}> please create the next chapter in a new thread based on the winning plan above.`,
     );
   } catch (err) {
     console.error(`[closeVotingSession] Failed to announce winner for thread ${threadId}:`, err);
