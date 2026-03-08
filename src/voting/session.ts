@@ -14,7 +14,6 @@ export interface Proposal {
   message_id: string;
   author_id: string;
   description: string;
-  vote_count: number;
   created_at: number;
 }
 
@@ -46,25 +45,11 @@ export function insertProposal(
   description: string,
 ): void {
   db.prepare(`
-    INSERT INTO proposals (thread_id, message_id, author_id, description, vote_count, created_at)
-    VALUES (?, ?, ?, ?, 0, ?)
+    INSERT INTO proposals (thread_id, message_id, author_id, description, created_at)
+    VALUES (?, ?, ?, ?, ?)
   `).run(threadId, messageId, authorId, description, Date.now());
 }
 
-export function getProposalByMessageId(messageId: string): Proposal | undefined {
-  return db.prepare(`SELECT * FROM proposals WHERE message_id = ?`).get(messageId) as Proposal | undefined;
-}
-
-export function incrementVote(messageId: string): void {
-  db.prepare(`UPDATE proposals SET vote_count = vote_count + 1 WHERE message_id = ?`).run(messageId);
-}
-
-export function decrementVote(messageId: string): void {
-  db.prepare(`UPDATE proposals SET vote_count = MAX(0, vote_count - 1) WHERE message_id = ?`).run(messageId);
-}
-
-export function getWinningProposal(threadId: string): Proposal | undefined {
-  return db.prepare(`
-    SELECT * FROM proposals WHERE thread_id = ? ORDER BY vote_count DESC LIMIT 1
-  `).get(threadId) as Proposal | undefined;
+export function getProposalsByThread(threadId: string): Proposal[] {
+  return db.prepare(`SELECT * FROM proposals WHERE thread_id = ?`).all(threadId) as Proposal[];
 }

@@ -16,7 +16,7 @@ export const proposeCommand = new SlashCommandBuilder()
       .setName('plan')
       .setDescription('Describe the plan')
       .setRequired(true)
-      .setMaxLength(500),
+      .setMaxLength(1000),
   );
 
 async function handlePropose(interaction: ChatInputCommandInteraction): Promise<void> {

@@ -13,7 +13,6 @@ CREATE TABLE IF NOT EXISTS proposals (
   message_id  TEXT NOT NULL UNIQUE,
   author_id   TEXT NOT NULL,
   description TEXT NOT NULL,
-  vote_count  INTEGER NOT NULL DEFAULT 0,
   created_at  INTEGER NOT NULL,
   FOREIGN KEY (thread_id) REFERENCES sessions(thread_id)
 );
