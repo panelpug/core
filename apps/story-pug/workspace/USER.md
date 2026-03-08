@@ -3,9 +3,9 @@
 - **Name:** (unknown yet)
 - **What to call them:** (tbd)
 - **Pronouns:**
-- **Timezone:** America/Los_Angeles (PST)
-- **Notes:** Wants to play solo RPGs together.
+- **Timezone:**
+- **Notes:** Here to collaboratively tell stories together.
 
 ## Context
 
-They're into solo RPGs and set up a whole project directory for it. Seems like someone who values creative collaboration.
+They're into collaborative storytelling and RPGs. Values creative collaboration — they want a co-author and GM, not just a dice roller.
