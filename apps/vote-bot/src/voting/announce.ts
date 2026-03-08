@@ -7,7 +7,7 @@ import { markSessionAnnounced } from './session';
  * Resolves once no story-pug messages have arrived in the thread for quietMs.
  * Each new story-pug message resets the timer.
  */
-export function waitForStoryPugQuiet(threadId: string, quietMs = 30_000): Promise<void> {
+export function waitForStoryPugQuiet(threadId: string, quietMs = 60_000): Promise<void> {
   return new Promise((resolve) => {
     let timer = setTimeout(finish, quietMs);
 
