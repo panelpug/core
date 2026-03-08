@@ -1,5 +1,6 @@
 node_modules/
-dist/
-.env
-data/
+apps/*/dist/
+apps/*/data/
+apps/*/.env
+packages/*/dist/
 *.db
