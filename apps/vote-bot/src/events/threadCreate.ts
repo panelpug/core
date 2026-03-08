@@ -30,6 +30,7 @@ client.on(Events.ThreadCreate, async (thread, newlyCreated) => {
   if (!newlyCreated) return;
   if (thread.parent?.type !== ChannelType.GuildForum) return;
   if (!config.forumChannelIds.includes(thread.parentId ?? '')) return;
+  if (thread.ownerId !== config.pugBotId) return;
 
   const endsAt = Date.now() + config.votingDurationMs;
   openSession(thread.id, thread.parentId!, endsAt);
