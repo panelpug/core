@@ -1,0 +1,8 @@
+# OpenClaw local state — contains secrets
+.openclaw/
+
+# Agent runtime state
+workspace/memory/
+workspace/.pi/
+workspace/.openclaw/
+workspace/MEMORY.md
