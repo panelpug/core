@@ -10,6 +10,11 @@ function openDb(): Database.Database {
   const db = new Database(DB_PATH);
   db.pragma('journal_mode = WAL');
   db.exec(SCHEMA);
+  try {
+    db.exec(`ALTER TABLE sessions ADD COLUMN is_announced INTEGER NOT NULL DEFAULT 0`);
+  } catch {
+    // Column already exists — no-op
+  }
   return db;
 }
 

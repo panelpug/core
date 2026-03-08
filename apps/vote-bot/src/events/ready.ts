@@ -3,6 +3,7 @@ import { client } from '../client';
 import { getAllOpenSessions } from '../voting/session';
 import { scheduleSessionEnd } from '../voting/timer';
 import { closeVotingSession } from '../voting/close';
+import { waitThenAnnounce } from '../voting/announce';
 
 client.once(Events.ClientReady, async (readyClient) => {
   console.log(`[ready] Logged in as ${readyClient.user.tag}`);
@@ -19,6 +20,13 @@ client.once(Events.ClientReady, async (readyClient) => {
       scheduleSessionEnd(session.thread_id, session.ends_at, () => {
         closeVotingSession(session.thread_id).catch(console.error);
       });
+
+      if (!session.is_announced) {
+        const thread = await readyClient.channels.fetch(session.thread_id).catch(() => null);
+        if (thread?.isThread()) {
+          waitThenAnnounce(thread, session.ends_at).catch(console.error);
+        }
+      }
     }
   }
 });
