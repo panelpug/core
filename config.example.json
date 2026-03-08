@@ -2,5 +2,6 @@
   "guildId": "YOUR_GUILD_ID",
   "forumChannelIds": ["CHANNEL_ID_1"],
   "votingDurationMs": 86400000,
-  "proposalEmoji": "➕"
+  "proposalEmoji": "➕",
+  "pugBotId": "PUG_BOT_USER_ID"
 }
