@@ -4,7 +4,8 @@ CREATE TABLE IF NOT EXISTS sessions (
   channel_id  TEXT NOT NULL,
   started_at  INTEGER NOT NULL,
   ends_at     INTEGER NOT NULL,
-  is_closed   INTEGER NOT NULL DEFAULT 0
+  is_closed   INTEGER NOT NULL DEFAULT 0,
+  is_announced INTEGER NOT NULL DEFAULT 0
 );
 
 CREATE TABLE IF NOT EXISTS proposals (

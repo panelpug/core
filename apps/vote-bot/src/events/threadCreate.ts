@@ -4,6 +4,7 @@ import { config } from '../config';
 import { openSession } from '../voting/session';
 import { scheduleSessionEnd } from '../voting/timer';
 import { closeVotingSession } from '../voting/close';
+import { waitThenAnnounce } from '../voting/announce';
 
 /** Resolves once the first message in the thread arrives, or null on timeout. */
 function waitForStarterMessage(threadId: string, timeoutMs = 10_000): Promise<Message | null> {
@@ -50,13 +51,7 @@ client.on(Events.ThreadCreate, async (thread, newlyCreated) => {
     }
   }
 
-  const endsAtSec = Math.floor(endsAt / 1000);
-  const msg = await thread.send(
-    `**A new voting session has started!**\n\n` +
-    `Use \`/propose\` to submit your plan for the characters.\n` +
-    `Others can vote by reacting ${config.proposalEmoji} to any proposal.\n\n` +
-    `Voting closes <t:${endsAtSec}:R> (<t:${endsAtSec}:f>).`,
-  );
-
-  await msg.pin().catch(console.error);
+  // Wait until the pug-bot has finished posting its messages before announcing
+  // that voting has opened (resets each time a pug-bot message arrives).
+  await waitThenAnnounce(thread, endsAt);
 });

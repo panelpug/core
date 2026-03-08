@@ -6,6 +6,7 @@ export interface Session {
   started_at: number;
   ends_at: number;
   is_closed: number;
+  is_announced: number;
 }
 
 export interface Proposal {
@@ -22,6 +23,10 @@ export function openSession(threadId: string, channelId: string, endsAt: number)
     INSERT INTO sessions (thread_id, channel_id, started_at, ends_at, is_closed)
     VALUES (?, ?, ?, ?, 0)
   `).run(threadId, channelId, Date.now(), endsAt);
+}
+
+export function markSessionAnnounced(threadId: string): void {
+  db.prepare(`UPDATE sessions SET is_announced = 1 WHERE thread_id = ?`).run(threadId);
 }
 
 export function closeSession(threadId: string): void {
