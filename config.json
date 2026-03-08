@@ -1,6 +1,7 @@
 {
   "guildId": "1479953268628001055",
   "forumChannelIds": ["1479999300111962183", "1480002384381087754", "1480002978114179245"],
-  "votingDurationMs": 86400000,
-  "proposalEmoji": "➕"
+  "votingDurationMs": 600000,
+  "proposalEmoji": "➕",
+  "pugBotId": "1480030023200018594"
 }
