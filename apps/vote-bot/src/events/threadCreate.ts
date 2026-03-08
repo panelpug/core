@@ -30,7 +30,7 @@ client.on(Events.ThreadCreate, async (thread, newlyCreated) => {
   if (!newlyCreated) return;
   if (thread.parent?.type !== ChannelType.GuildForum) return;
   if (!config.forumChannelIds.includes(thread.parentId ?? '')) return;
-  if (thread.ownerId !== config.pugBotId) return;
+  if (thread.ownerId !== config.storyPugId) return;
 
   const endsAt = Date.now() + config.votingDurationMs;
   openSession(thread.id, thread.parentId!, endsAt);
@@ -52,7 +52,7 @@ client.on(Events.ThreadCreate, async (thread, newlyCreated) => {
     }
   }
 
-  // Wait until the pug-bot has finished posting its messages before announcing
-  // that voting has opened (resets each time a pug-bot message arrives).
+  // Wait until the story-pug has finished posting its messages before announcing
+  // that voting has opened (resets each time a story-pug message arrives).
   await waitThenAnnounce(thread, endsAt);
 });

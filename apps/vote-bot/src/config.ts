@@ -6,7 +6,7 @@ interface Config {
   forumChannelIds: string[];
   votingDurationMs: number;
   proposalEmoji: string;
-  pugBotId: string;
+  storyPugId: string;
 }
 
 function validateConfig(): Config {

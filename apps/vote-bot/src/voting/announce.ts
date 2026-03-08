@@ -4,10 +4,10 @@ import { config } from '../config';
 import { markSessionAnnounced } from './session';
 
 /**
- * Resolves once no pug-bot messages have arrived in the thread for quietMs.
- * Each new pug-bot message resets the timer.
+ * Resolves once no story-pug messages have arrived in the thread for quietMs.
+ * Each new story-pug message resets the timer.
  */
-export function waitForPugBotQuiet(threadId: string, quietMs = 30_000): Promise<void> {
+export function waitForStoryPugQuiet(threadId: string, quietMs = 30_000): Promise<void> {
   return new Promise((resolve) => {
     let timer = setTimeout(finish, quietMs);
 
@@ -17,7 +17,7 @@ export function waitForPugBotQuiet(threadId: string, quietMs = 30_000): Promise<
     }
 
     const handler = (message: Message) => {
-      if (message.channelId === threadId && message.author.id === config.pugBotId) {
+      if (message.channelId === threadId && message.author.id === config.storyPugId) {
         clearTimeout(timer);
         timer = setTimeout(finish, quietMs);
       }
@@ -28,7 +28,7 @@ export function waitForPugBotQuiet(threadId: string, quietMs = 30_000): Promise<
 }
 
 export async function waitThenAnnounce(thread: ThreadChannel, endsAt: number): Promise<void> {
-  await waitForPugBotQuiet(thread.id);
+  await waitForStoryPugQuiet(thread.id);
 
   const endsAtSec = Math.floor(endsAt / 1000);
   const msg = await thread.send(
