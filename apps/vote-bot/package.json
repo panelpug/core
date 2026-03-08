@@ -1,0 +1,23 @@
+{
+  "name": "@panelpug/vote-bot",
+  "version": "1.0.0",
+  "description": "PanelPug plan-voting Discord bot",
+  "main": "dist/src/index.js",
+  "scripts": {
+    "build": "tsc",
+    "start": "node dist/src/index.js",
+    "dev": "ts-node src/index.ts",
+    "deploy": "ts-node scripts/deploy-commands.ts"
+  },
+  "dependencies": {
+    "better-sqlite3": "^12.6.2",
+    "discord.js": "^14.16.3",
+    "dotenv": "^16.4.5"
+  },
+  "devDependencies": {
+    "@types/better-sqlite3": "^7.6.11",
+    "@types/node": "^20.17.10",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.7.2"
+  }
+}
