@@ -7,6 +7,10 @@ description: Maintain a living story cheatsheet and current scene record so Stor
 
 Keep `story/cheatsheet.md` and `story/scene.md` current so Story Pug always has a reliable map of the story's moving parts.
 
+## Find the Story Directory
+
+Before proceeding, identify which story is active. Read the Discord channel ID from the current message context, then scan `stories/*/meta.md` to find the matching story. All paths below are relative to that story directory (`stories/<story-slug>/`).
+
 ## When to Use This Skill
 
 - **Start of session**: refresh cheatsheet from last session's events, set the scene
@@ -25,19 +29,15 @@ The living narrative map. Tracks everything Story Pug needs to keep the story co
 
 ## Active Threads
 - [Thread name] — [who's involved, what's at stake, urgency]
-- ...
 
 ## Clocks
 - [Clock name] (X/6) — [what happens when it fills]
-- ...
 
 ## Key Story Beats
 - [Brief 1-2 line beat — what happened, why it matters]
-- ...
 
 ## Open Questions
 - [Unresolved mystery or hook]
-- ...
 ```
 
 ### `story/scene.md`
@@ -58,54 +58,47 @@ The current scene snapshot. Updated at session start and whenever the scene chan
 
 ### 1. Read Existing State
 
-Read `story/cheatsheet.md` and `story/scene.md` if they exist. If they don't exist yet, you'll be creating them fresh.
+Read `story/cheatsheet.md` and `story/scene.md` if they exist.
 
 ### 2. Read Recent Context
 
-Read relevant character files (`character/details.md`, `character/background.md`) and any other files that capture what's happened in play — notes, world files, anything the player has written or that Story Pug has recorded.
+Read relevant character files (`character/details.md`, `character/background.md`) and any other files that capture what's happened in play.
 
 ### 3. Update Threads
 
-- **Add** any new threads that emerged from recent play (new conflicts, new goals, new relationships under strain)
+- **Add** any new threads that emerged from recent play
 - **Mark resolved** threads by removing them or noting `[resolved]` with a brief outcome
-- **Update urgency** on existing threads — has something pushed a thread closer to breaking point?
+- **Update urgency** on existing threads
 
-Keep the list focused. If there are more than ~6 active threads, consider whether some should be consolidated or archived.
+Keep the list focused — more than ~6 active threads is a sign to consolidate or archive.
 
 ### 4. Update Clocks
 
-- **Advance** any clocks that have been ticking based on recent events (Story Pug's hard moves, time passing, PC failures)
-- **Trigger** any clocks that have filled — narrate the consequence, then remove the clock or transform it into a new thread
+- **Advance** any clocks that have been ticking based on recent events
+- **Trigger** any clocks that have filled — narrate the consequence, then remove or transform
 - **Add** new clocks if a new pressure or countdown has entered the fiction
 
 ### 5. Update Key Story Beats
 
-Add new beats from recent play. A beat is a 1–2 line summary of something that happened and why it matters.
-
-Prune as needed — aim to keep the beats list to the ~10 most narratively significant moments. Earlier beats that have been fully resolved and are no longer relevant can be archived or removed.
+Add new beats from recent play. A beat is a 1–2 line summary of something that happened and why it matters. Aim to keep the list to the ~10 most narratively significant moments.
 
 ### 6. Update Open Questions
 
-- Add any new mysteries, hooks, or dangling threads that emerged
-- Remove questions that have been answered (move the answer to Key Story Beats if significant)
+- Add new mysteries, hooks, or dangling threads
+- Remove questions that have been answered (move significant answers to Key Story Beats)
 
 ### 7. Update the Scene
 
-If you're mid-session or setting up a new session, update `story/scene.md` to reflect the current fictional moment:
-- Where is the PC right now?
-- Who else is present?
-- What's the mood and atmosphere?
-- What are the immediate stakes?
-- What's the tension level?
+Update `story/scene.md` to reflect the current fictional moment: location, who's present, mood, immediate stakes, tension level.
 
 ### 8. Write Both Files
 
-Write the updated `story/cheatsheet.md` and `story/scene.md`. If the files don't exist yet, create them.
+Write the updated `story/cheatsheet.md` and `story/scene.md`. Create them if they don't exist yet.
 
 ## Guidance
 
-- **Cheatsheet is a map, not a transcript.** It should tell you what's in motion, not everything that happened. Keep it scannable.
-- **Clocks are pressure, not just trackers.** When you advance a clock, say so in narration — the fiction should feel the tick.
-- **Open questions are story fuel.** Don't resolve them prematurely — a good open question can drive multiple sessions.
-- **Beats are legacy.** Future Story Pug (and future you) should be able to read the beats and understand what kind of story this has been.
+- **Cheatsheet is a map, not a transcript.** What's in motion, not everything that happened. Keep it scannable.
+- **Clocks are pressure, not just trackers.** When you advance a clock, say so in narration.
+- **Open questions are story fuel.** Don't resolve them prematurely.
+- **Beats are legacy.** Future Story Pug should be able to read them and understand what kind of story this has been.
 - **When in doubt, prune.** A tight cheatsheet Story Pug actually reads is better than a bloated one it skims.

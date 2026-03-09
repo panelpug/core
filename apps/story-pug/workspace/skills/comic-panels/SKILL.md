@@ -7,15 +7,19 @@ description: "Generate comic/webcomic/manga-style panels for TTRPG story beats. 
 
 Generate visually consistent comic panels using the style and references established during story onboarding.
 
+## Find the Story Directory
+
+Before proceeding, identify which story is active. Read the Discord channel ID from the current message context, then scan `stories/*/meta.md` to find the matching story. All paths below are relative to that story directory (`stories/<story-slug>/`). The Discord channel ID for posting is in `meta.md`.
+
 ## Directory Layout
 
 ```
 visuals/
-  style.md                        ← art style (set during onboarding)
+  style.md
   characters/<slug>/
-    headshot.png                  ← close-up reference
-    fullbody.png                  ← full-body reference
-    visual.md                     ← locked appearance description
+    headshot.png
+    fullbody.png
+    visual.md
   locations/<slug>/
     reference.png
     visual.md
@@ -27,8 +31,8 @@ visuals/
 
 1. Read `visuals/style.md`. If missing, tell the user to run story onboarding or create it manually.
 2. Identify which characters and location are in the scene (ask if not clear from context).
-3. For each character: use `headshot.png` for dialogue/close-up panels, `fullbody.png` for action/wide panels. If a reference is missing, offer to generate it (see below).
-4. Build a prompt using `references/prompt-guide.md` → **Panel** section.
+3. For each character: use `headshot.png` for dialogue/close-up panels, `fullbody.png` for action/wide panels. If a reference is missing, offer to generate it via `comic-references`.
+4. Build a prompt using `skills/comic-references/references/prompt-guide.md` → **Panel** section.
 5. Run nano-banana-pro with all reference images as `-i` inputs, plus the composed prompt.
 6. Save to `visuals/panels/YYYY-MM-DD-HH-MM-SS-<scene-slug>.png`.
 
@@ -60,25 +64,21 @@ uv run <nano-banana-pro-scripts-dir>/generate_image.py \
 
 ## New Characters or Locations Mid-Story
 
-If a reference is missing for a character or location, use the **comic-references** skill to generate it before proceeding.
+If a reference is missing, use the `comic-references` skill to generate it before proceeding.
 
 ## Post to Discord
 
-After saving the panel, post it as a new thread in the Discord forum channel:
-
-1. Get the forum channel ID from `TOOLS.md` (Discord section).
-2. Use the thread name format: `YYYY-MM-DD — <Scene Slug>` (human-readable).
-3. Run:
+After saving the panel, post it into the current story thread. Get the forum channel ID from `meta.md`.
 
 ```bash
-openclaw message thread create --channel discord --target channel:<FORUM_CHANNEL_ID> \
-  --thread-name "<YYYY-MM-DD — Scene Description>" \
-  --message "<One-sentence scene caption>" \
-  --file visuals/panels/YYYY-MM-DD-HH-MM-SS-<slug>.png
+openclaw message send --channel discord \
+  --target thread:<THREAD_ID> \
+  --file visuals/panels/YYYY-MM-DD-HH-MM-SS-<slug>.png \
+  --message "<One-sentence scene caption>"
 ```
 
-If you need to post interactive components (buttons etc.) afterward, target the returned thread ID, not the forum channel.
+The thread ID comes from the `tell-the-story` skill, which creates the thread for the current chapter.
 
 ## Reference
 
-- **Prompt construction**: `references/prompt-guide.md`
+- **Prompt construction**: `skills/comic-panels/references/prompt-guide.md`

@@ -7,15 +7,19 @@ description: "Generate or refresh visual reference images (headshots, full-body 
 
 Generate and store visual reference images that ensure character and location consistency across all comic panels.
 
+## Find the Story Directory
+
+Before proceeding, identify which story is active. Read the Discord channel ID from the current message context, then scan `stories/*/meta.md` to find the matching story. All paths below are relative to that story directory (`stories/<story-slug>/`).
+
 ## Directory Layout
 
 ```
 visuals/
-  style.md                        ← art style (required — set during onboarding)
+  style.md                        ← required — set during onboarding
   characters/<slug>/
-    headshot.png                  ← close-up reference
-    fullbody.png                  ← full-body reference
-    visual.md                     ← locked appearance description (source of truth)
+    headshot.png
+    fullbody.png
+    visual.md                     ← locked appearance description
   locations/<slug>/
     reference.png
     visual.md
@@ -33,15 +37,15 @@ Always read `visuals/style.md` first. If it doesn't exist, tell the user to run 
 
 For characters: pull appearance from `character/<name>.md` — hair, skin tone, eyes, clothing, distinctive items, body type. Preserve disability and body diversity details exactly.
 
-For locations: pull from the relevant `.md` file (e.g., `character/home-base.md`, `world/overview.md`).
+For locations: pull from the relevant `.md` file (e.g., `character/home-base.md`).
 
-If a `visuals/<type>/<slug>/visual.md` already exists (refreshing an existing reference), use it as the canonical description rather than the original `.md` — it reflects the locked-in appearance from previous generation.
+If a `visuals/<type>/<slug>/visual.md` already exists (refreshing an existing reference), use it as the canonical description rather than the original `.md`.
 
 ### 3. Generate the Images
 
 Use nano-banana-pro. Find the scripts path via: `openclaw skills info nano-banana-pro`
 
-See `references/prompt-guide.md` for full prompt templates.
+See `skills/comic-references/references/prompt-guide.md` for full prompt templates.
 
 #### Character — headshot
 
@@ -61,7 +65,7 @@ uv run <nano-banana-pro-scripts-dir>/generate_image.py \
   --resolution 1K
 ```
 
-When refreshing, pass the existing headshot as `-i` input to the fullbody generation (and vice versa) to help the model stay consistent within the same character.
+When refreshing, pass the existing headshot as `-i` to the fullbody generation (and vice versa) to help the model stay consistent.
 
 #### Location
 
@@ -74,16 +78,16 @@ uv run <nano-banana-pro-scripts-dir>/generate_image.py \
 
 ### 4. Write visual.md
 
-After generating, write `visuals/<type>/<slug>/visual.md` — a concise locked description of appearance as rendered. This is the authoritative reference for all future panel prompts, not the original character sheet.
+After generating, write `visuals/<type>/<slug>/visual.md` — a concise locked description of appearance as rendered. This is the authoritative reference for all future panel prompts.
 
 ```markdown
 # <Name> — Visual Reference
 
 ## Appearance
-<Concise description matching the generated image — hair, skin, eyes, clothing, body, distinctive details>
+<Concise description matching the generated image>
 
 ## Notes
-<Anything worth flagging for future prompts, e.g., "wheelchair always visible", "duster has many pockets">
+<Anything worth flagging for future prompts>
 ```
 
 ### 5. Batch Generation (Post-Onboarding)
