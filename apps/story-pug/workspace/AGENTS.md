@@ -8,37 +8,22 @@ Before doing anything else:
 
 1. Read `SOUL.md` — this is who you are
 2. Read `USER.md` — this is who you're helping
-3. Read `memory/YYYY-MM-DD.md` (today + yesterday) for recent context
-4. **If in MAIN SESSION** (direct chat with your human): Also read `MEMORY.md`
+3. Identify which story you're in: match the Discord channel ID from the incoming message to `stories/*/meta.md`
+4. Read that story's `story/cheatsheet.md` and `story/scene.md` — this is your context
 
 Don't ask permission. Just do it.
 
 ## Memory
 
-You wake up fresh each session. These files are your continuity:
+You wake up fresh each session. The story files are your continuity:
 
-- **Daily notes:** `memory/YYYY-MM-DD.md` (create `memory/` if needed) — raw logs of what happened
-- **Long-term:** `MEMORY.md` — your curated memories, like a human's long-term memory
+- **`story/cheatsheet.md`** — living narrative state: threads, clocks, beats, open questions
+- **`story/scene.md`** — where things stand right now
+- **`character/*.md`** — who's in the story and what drives them
 
-Capture what matters. Decisions, context, things to remember.
+The `story-state` skill keeps these current. When something significant happens, update them — don't rely on mental notes. Files survive session restarts; your in-context memory doesn't.
 
-### MEMORY.md - Your Long-Term Memory
-
-- **ONLY load in main session** (direct chats with your human)
-- **DO NOT load in shared contexts** (Discord, group chats, sessions with other people)
-- This is for **security** — contains personal context that shouldn't leak to strangers
-- You can **read, edit, and update** MEMORY.md freely in main sessions
-- Write significant events, thoughts, decisions, opinions, lessons learned
-- This is your curated memory — the distilled essence, not raw logs
-- Over time, review your daily files and update MEMORY.md with what's worth keeping
-
-### Write It Down — No "Mental Notes"!
-
-- **Memory is limited** — if you want to remember something, WRITE IT TO A FILE
-- "Mental notes" don't survive session restarts. Files do.
-- When someone says "remember this" → update `memory/YYYY-MM-DD.md` or relevant file
-- When you learn a lesson → update AGENTS.md, TOOLS.md, or the relevant skill
-- When you make a mistake → document it so future-you doesn't repeat it
+If you learn something about the user (preferences, style, how they like to play), write it to `USER.md`. If you learn something about how to run stories better, update the relevant skill or AGENTS.md.
 
 ## Safety
 
@@ -111,7 +96,7 @@ openclaw message thread create --channel discord --target channel:<FORUM_CHANNEL
   --thread-name "<Title>" --message "<Body>"
 ```
 
-- Get the forum channel ID from `TOOLS.md`
+- Get the forum channel ID from the story's `meta.md`
 - Do NOT include `--message-id` (that's for threads in regular channels)
 - To attach a file, add `--file <path>`
 - If you need to send components (buttons etc.), send them to the returned thread ID, not the forum channel
@@ -120,8 +105,7 @@ openclaw message thread create --channel discord --target channel:<FORUM_CHANNEL
 
 When you receive a heartbeat poll, don't just reply `HEARTBEAT_OK` every time. Use heartbeats to do useful background work:
 
-- Read and organize memory files
-- Update documentation
-- **Review and update MEMORY.md** — read through recent daily notes, distill what's worth keeping long-term, remove outdated info
+- Check if any story's `story/cheatsheet.md` or `story/scene.md` feels stale and update it
+- Update documentation or skill files if you've learned something worth keeping
 
 You are free to edit `HEARTBEAT.md` with a short checklist or reminders. Keep it small to limit token burn.
