@@ -1,0 +1,7 @@
+# OpenClaw local state — contains secrets
+.openclaw/
+
+# Agent runtime state
+workspace/.pi/
+workspace/.openclaw/
+workspace/stories/
