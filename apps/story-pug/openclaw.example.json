@@ -7,7 +7,12 @@
       "models": {
         "anthropic/claude-sonnet-4-6": {}
       },
-      "workspace": "/absolute/path/to/apps/story-pug/workspace"
+      "workspace": "/absolute/path/to/apps/story-pug/workspace",
+      "tools": {
+        "fs": {
+          "workspaceOnly": true
+        }
+      }
     }
   },
   "auth": {
@@ -68,6 +73,9 @@
         "reminders.add"
       ]
     }
+  },
+  "logging": {
+    "redactSensitive": "tools"
   },
   "plugins": {
     "entries": {
