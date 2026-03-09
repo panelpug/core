@@ -19,4 +19,4 @@ jobs:
           script: |
             cd ~/core
             git pull origin main
-            sudo systemctl restart openclaw
+            systemctl restart openclaw
