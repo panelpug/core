@@ -8,15 +8,9 @@ Create a dedicated `deploy` user:
 adduser deploy
 ```
 
-Grant passwordless sudo for the openclaw service restart only:
-
-```bash
-echo "deploy ALL=(ALL) NOPASSWD: /bin/systemctl restart openclaw" > /etc/sudoers.d/deploy-openclaw
-```
-
 ## Repo
 
-Clone with sparse checkout so only `apps/story-pug` is synced:
+As `deploy`, clone with sparse checkout so only `apps/story-pug` is synced:
 
 ```bash
 git clone --no-checkout https://github.com/your-org/core.git ~/core
@@ -30,16 +24,30 @@ git checkout main
 
 ## OpenClaw
 
-Install openclaw, configure it, then install the gateway as a systemd service:
+As `root`, install openclaw (the install script needs sudo to update the package index):
 
 ```bash
-openclaw gateway install
+curl -fsSL https://openclaw.ai/install.sh | bash
+```
+
+Configure openclaw, then install the gateway as a systemd service running as `deploy`:
+
+```bash
+openclaw gateway install --user deploy
 ```
 
 Point the workspace at the cloned repo in `openclaw.json`:
 
 ```json
 "workspace": "/home/deploy/core/apps/story-pug/workspace"
+```
+
+## Sudo
+
+Once openclaw is installed and the service is running, restrict `deploy` to only restarting the service:
+
+```bash
+echo "deploy ALL=(ALL) NOPASSWD: /bin/systemctl restart openclaw" > /etc/sudoers.d/deploy-openclaw
 ```
 
 ## GitHub Secrets
