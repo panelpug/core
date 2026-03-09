@@ -1,0 +1,22 @@
+name: Deploy Story Pug
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "apps/story-pug/**"
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Deploy to droplet
+        uses: appleboy/ssh-action@v1
+        with:
+          host: ${{ secrets.DROPLET_HOST }}
+          username: ${{ secrets.DROPLET_USER }}
+          key: ${{ secrets.DROPLET_SSH_KEY }}
+          script: |
+            cd ~/core
+            git pull origin main
+            sudo systemctl restart openclaw
