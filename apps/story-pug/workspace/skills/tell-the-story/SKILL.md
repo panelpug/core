@@ -46,11 +46,10 @@ Rule of thumb: if getting it wrong would feel like a betrayal of the player's vi
 
 1. Read `story/scene.md` for current location, mood, and stakes
 2. Read `story/cheatsheet.md` for active threads and ticking clocks
-3. Write the narrative to `story/draft.md`, stopping at the first point where interaction is needed — a goal-level uncertain moment (move trigger) or a genuine player choice. Place `[PANEL: ...]` placeholders at visual moments.
-4. Create a new thread in the story's Discord forum channel for this story segment (e.g., "Chapter 1 — The Opening", "Scene 3 — The Confrontation") — each invocation of this skill gets a fresh thread. Get the channel ID from `meta.md`. Deliver `story/draft.md` into that thread in segments: output each prose segment, then invoke `comic-panels` for each `[PANEL: ...]` — working through in order so images appear inline.
-5. Delete `story/draft.md`
-6. End with "What do you do?"
-7. Briefly consider if `story-state` should be updated (new beats, clock ticks)
+3. Write the narrative to `story/scripts/YYYY-MM-DD-HH-MM-SS-<scene-slug>.md`, stopping at the first point where interaction is needed — a goal-level uncertain moment (move trigger) or a genuine player choice. Place `[PANEL: ...]` placeholders at visual moments.
+4. Create a new thread in the story's Discord forum channel for this story segment (e.g., "Chapter 1 — The Opening", "Scene 3 — The Confrontation") — each invocation of this skill gets a fresh thread. Get the channel ID from `meta.md`. Deliver the script into that thread in segments: output each prose segment, then invoke `comic-panels` for each `[PANEL: ...]` — working through in order so images appear inline.
+5. End with "What do you do?"
+6. Briefly consider if `story-state` should be updated (new beats, clock ticks)
 
 ## Guidance
 
